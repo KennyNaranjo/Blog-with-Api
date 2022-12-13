@@ -12,18 +12,18 @@
 
 <body>
   <!-- Header -->
-    <div class="container header">
-        <header class="row">
-            <h1 class="col-lg-12 bg-primary d-flex justify-content-center p-4 rounded">DK Blog</h1>
+    <div class="container-fluid">
+        <header class="row-">
+            <h1 class="bg-primary d-flex justify-content-center p-4 rounded">DK Blog</h1>
         </header>
     </div>
   <!-- End Header -->
 
   <!-- Main Content -->
-    <section class="container">
-        <div class="row m-3 parent-box d-flex justify-content-center">
+    <div class="container-album ">
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-md-4 g-3 py-3 parent-box d-flex justify-content-center">
         </div>
-    </section>
+    </div>
   <!-- End Main Content -->
 
     
@@ -31,15 +31,18 @@
     <div class="modal fade" id="modal-id" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered model-lg">
         <div class="modal-content">
-          <div class="modal-header">            
+          <div class="modal-header">
+            <h5 class="post-title"></h5>  
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            
           </div>
           <div class="modal-body">
+            <p class="post-text"></p>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Edit</button>
-            <button type="button" class="btn btn-terciary">Comments</button>
+            <button type="button" class="btn btn-info">Comments</button>
+            <button type="button" class="btn btn-primary">Edit</button> 
+            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
           </div>
         </div>
       </div>

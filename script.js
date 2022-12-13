@@ -4,13 +4,21 @@ urlComments = "http://localhost:3000/comments"
 parentElement = document.querySelector(".parent-box");
 modalBody = document.querySelector(".modal-body");
 modalHeader = document.querySelector(".modal-header");
+allArticle = document.querySelectorAll("article");
+modalBtnClose = document.querySelector(".btn-close");
+modalFade = document.querySelector(".modal fade");
 
 
-// document.addEventListener("click", showPost);
-// function showPost() {
-//         textPost.textContent = post.body;
-//         modalBody.textContent = textPost;
-// }  
+
+allArticle = document.addEventListener("click", showModal);
+function showModal(){
+    const modalPost = new bootstrap.Modal(document.getElementById('modal-id'))
+    modalPost.show();
+    
+}
+
+
+
 
 
 
@@ -23,17 +31,17 @@ fetch(urlPosts)
         articlePost.classList = "col bg-primary m-3 text-center p-3 rounded numPost"
         titlePost.textContent = post.title;
         articlePost.append(titlePost);
-        parentElement.appendChild(articlePost);
+        parentElement.appendChild(articlePost );
     });
     
 });
 
 
 
-fetch(urlUsers)
-.then(responseUsers => responseUsers.json())
-.then(dataUsers => console.log(dataUsers));
+// fetch(urlUsers)
+// .then(responseUsers => responseUsers.json())
+// .then(dataUsers => );
 
-fetch(urlComments)
-.then(responseComments => responseComments.json())
-.then(dataComments => console.log(dataComments))
+// fetch(urlComments)
+// .then(responseComments => responseComments.json())
+// .then(dataComments => )

@@ -4,19 +4,11 @@ urlComments = "http://localhost:3000/comments"
 parentElement = document.querySelector(".parent-box");
 modalBody = document.querySelector(".modal-body");
 modalHeader = document.querySelector(".modal-header");
-allArticle = document.querySelectorAll("article");
 
-
-
-// allArticle = document.addEventListener("click", showModal);
-// function showModal(){
-//     const modalPost = new bootstrap.Modal(document.getElementById('modal-id'))
-//     modalPost.show();
-    
-// }
-
-
-
+    const modalTittle = document.createElement ("h5")
+    modalTittle.textContent = titlePost;
+    modalHeader.append(modalTittle);
+        
 
 
 
@@ -26,13 +18,17 @@ fetch(urlPosts)
     dataPost.forEach( post => {
         const articlePost = document.createElement("article");
         const titlePost = document.createElement("h5");
+        
         articlePost.setAttribute("data-bs-toggle","modal")
         articlePost.setAttribute("data-bs-target", "#modal-id")
         articlePost.classList = "col bg-primary m-3 p-2 rounded numPost "
         titlePost.textContent = post.title;
-        titlePost.classList = "p-2"
+        titlePost.classList = "p-2";    
         articlePost.append(titlePost);
-        parentElement.appendChild(articlePost );
+        parentElement.appendChild(articlePost);
+        
+        
+        
     });
     
 });

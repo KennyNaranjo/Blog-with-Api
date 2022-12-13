@@ -20,16 +20,17 @@ function allData(post){
     const titlePost = document.createElement("h5");
     const imgCard = document.createElement("img")
     articlePost.setAttribute("data-bs-toggle","modal");
-    articlePost.setAttribute("data-bs-target", "#modal-id");
-    articlePost.classList = "col bg-primary m-2 p-2 rounded text-center";
+    articlePost.setAttribute("data-bs-target", "#modal-id" + post.id);
+    articlePost.setAttribute("role", "button")
+    articlePost.classList = "col bg-secondary m-2 p-2 rounded text-center ";
     
     titlePost.textContent = post.title;
     postTitle.textContent = post.title;
     postText.textContent = post.body;
-    imgCard.classList = "img-thumbnail rounded"
+    imgCard.classList = "img-thumbnail"
     imgCard.setAttribute("src", "4kfigures.jpg")
     
-    titlePost.classList = "p-2";
+    titlePost.classList = "p-2 text-white";
     articlePost.append(imgCard, titlePost);
     
     parentElement.appendChild(articlePost);

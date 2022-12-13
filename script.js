@@ -5,9 +5,9 @@ parentElement = document.querySelector(".parent-box");
 modalBody = document.querySelector(".modal-body");
 modalHeader = document.querySelector(".modal-header");
 
-    const modalTittle = document.createElement ("h5")
-    modalTittle.textContent = titlePost;
-    modalHeader.append(modalTittle);
+    // const modalTittle = document.createElement ("h5")
+    // modalTittle.textContent = titlePost;
+    // modalHeader.append(modalTittle);
         
 
 
@@ -18,7 +18,6 @@ fetch(urlPosts)
     dataPost.forEach( post => {
         const articlePost = document.createElement("article");
         const titlePost = document.createElement("h5");
-        
         articlePost.setAttribute("data-bs-toggle","modal")
         articlePost.setAttribute("data-bs-target", "#modal-id")
         articlePost.classList = "col bg-primary m-3 p-2 rounded numPost "

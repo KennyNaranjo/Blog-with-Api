@@ -8,7 +8,6 @@ modalHeader = document.querySelector(".modal-header");
     // const modalTittle = document.createElement ("h5")
     // modalTittle.textContent = titlePost;
     // modalHeader.append(modalTittle);
-        
 
 
 

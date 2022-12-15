@@ -11,6 +11,7 @@ const modalEmail = document.querySelector(".email");
 const modalComments = document.querySelector(".btn-info");
 const modalFooter = document.querySelector(".modal-footer");
 const comments = document.querySelector("#comments");
+const deletePost = document.querySelector(".delete");
 
 
 fetch(urlPosts)
@@ -89,7 +90,10 @@ function triggerModal(element) {
                 commentEmail.classList = "d-inline m-2 border p-1 rounded bg-secondary text-white"
                 comments.append(commentBox);
             })
-            
+            deletePost.addEventListener("click", postDelete)
+            function postDelete(){
+            fetch("http://localhost:3000/posts/" + dataId ,{method: "DELETE"})
+    }    
         });
 
     

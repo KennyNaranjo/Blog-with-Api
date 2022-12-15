@@ -77,7 +77,7 @@ function triggerModal(element) {
                 emailBox.append(commentIcon, commentEmail);
                 commentBox.append(titlePost, paragraph, emailBox);
                 commentIcon.classList = "fa-regular fa-envelope d-inline m-2"
-                commentBox.classList = "card p-2 p m-3"
+                commentBox.classList = "card p-2 p m-3 bg-dark text-white"
                 emailBox.classList = "mt-2 mb-3"
                 titlePost.classList = "m-2"
                 paragraph.classList = "p-2"

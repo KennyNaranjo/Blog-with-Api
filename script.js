@@ -27,9 +27,7 @@ function allData(post) {
     const articlePost = document.createElement("article");
     const titleCard = document.createElement("h6");
     const imgCard = document.createElement("img");
-    const bttnEditPost = document.createElement("button");
-    const bttnDeletePost = document.createElement ("button");
-    const boxBttn = document.createElement("div");
+    
 
 
     imgCard.setAttribute("src", "./assets/img/1.gif");
@@ -45,12 +43,8 @@ function allData(post) {
     titleCard.textContent = post.title;
     articlePost.addEventListener("click", triggerModal);
     articlePost.append(imgCard, titleCard);
-    boxBttn.append(bttnEditPost, bttnDeletePost);
-    bttnEditPost.textContent = "Edit"
-    bttnDeletePost.textContent = "Delete"
-    boxBttn.classList = "d-flex justify-content-center"
     parentElement.appendChild(articlePost);
-    articlePost.appendChild(boxBttn);
+    
     
 }
 

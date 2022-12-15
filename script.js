@@ -27,20 +27,31 @@ function allData(post) {
     const articlePost = document.createElement("article");
     const titleCard = document.createElement("h6");
     const imgCard = document.createElement("img");
+    const bttnEditPost = document.createElement("button");
+    const bttnDeletePost = document.createElement ("button");
+    const boxBttn = document.createElement("div");
+
+
     imgCard.setAttribute("src", "./assets/img/1.gif");
     articlePost.setAttribute("data-bs-toggle","modal");
     articlePost.setAttribute("data-bs-target", "#modal-id");
     articlePost.setAttribute("role", "button");
     imgCard.setAttribute("data-id", post.id);
     titleCard.setAttribute("data-id", post.id);
-    articlePost.setAttribute("data-id", post.id);
+    
     articlePost.classList = "col bg-dark m-2 p-2 rounded text-center article-selector ";
     titleCard.classList = "p-2  text-white  text-center ";
     imgCard.classList = "img-fluid rounded rounded-bottom " ;
     titleCard.textContent = post.title;
     articlePost.addEventListener("click", triggerModal);
     articlePost.append(imgCard, titleCard);
+    boxBttn.append(bttnEditPost, bttnDeletePost);
+    bttnEditPost.textContent = "Edit"
+    bttnDeletePost.textContent = "Delete"
+    boxBttn.classList = "d-flex justify-content-center"
     parentElement.appendChild(articlePost);
+    articlePost.appendChild(boxBttn);
+    
 }
 
 function triggerModal(element) {

@@ -9,6 +9,9 @@ const modalBody = document.querySelector(".modal-body");
 const modalUserName = document.querySelector(".user-name");
 const modalEmail = document.querySelector(".email");
 const modalComments = document.querySelector(".btn-info");
+const modalFooter = document.querySelector(".modal-footer");
+const comments = document.querySelector("#comments");
+
 
 fetch(urlPosts)
 .then(responsePost => responsePost.json())
@@ -31,19 +34,19 @@ function allData(post) {
     imgCard.setAttribute("data-id", post.id);
     titleCard.setAttribute("data-id", post.id);
     articlePost.setAttribute("data-id", post.id);
-    articlePost.classList = "col bg-secondary m-2 p-2 rounded text-center article-selector";
-    titleCard.classList = "p-2 text-white";
-    imgCard.classList = "img-fluid";
+    articlePost.classList = "col bg-secondary m-2 p-2 rounded text-center article-selector bg-secondary ";
+    titleCard.classList = "p-2 bg-secondary text-white text-center ";
+    imgCard.classList = "img-fluid rounded" ;
     titleCard.textContent = post.title;
     articlePost.addEventListener("click", triggerModal);
-    modalComments.addEventListener("click", triggerModalComments)
     articlePost.append(imgCard, titleCard);
     parentElement.appendChild(articlePost);
     
 }
 
-function triggerModal(e) {
-    const dataId = e.target.getAttribute("data-id");
+function triggerModal(element) {
+    comments.textContent= "";
+    const dataId = element.target.getAttribute("data-id");
     fetch("http://localhost:3000/posts/" + dataId)
     .then(responsePostId => responsePostId.json())
     .then(data => {
@@ -55,32 +58,28 @@ function triggerModal(e) {
             modalUserName.textContent = data.username;
             modalEmail.textContent = data.email;
         });
-        
     })
+    fetch("http://localhost:3000/comments?postId=" + dataId)
+        .then(responsePost => responsePost.json())
+        .then(data => {
+            console.log(data)
+            data.forEach( i => {
+                const paragraph = document.createElement("p");
+                paragraph.textContent = i.body;
+                paragraph.classList = "p-2 card"
+                comments.append(paragraph);
+            })
+            
+        });
+    
+    
+        
 }
 
-fetch(urlComments)
-.then(responsePost => responsePost.json())
-.then(dataPost => {
-    dataPost.forEach( data => {
-        allDataComments(data);
-    });
-
-});
 
 
-function allDataComments(data){
-    console.log(data.postId)
-    // articles.setAttribute("comment-id", data.postId)
-}
 
 
-function triggerModalComments(e) {
-    const article = e.target.getAttribute("comment-id");
-    fetch("http://localhost:3000/comments/" )
-    .then(responsePostId => responsePostId.json())
-    .then(data => console.log(data.postId))
 
-}
 
 

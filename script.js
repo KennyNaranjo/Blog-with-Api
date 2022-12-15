@@ -11,7 +11,9 @@ const modalEmail = document.querySelector(".email");
 const modalComments = document.querySelector(".btn-info");
 const modalFooter = document.querySelector(".modal-footer");
 const comments = document.querySelector("#comments");
-const buttonBox = document.querySelector(".button-box");
+const deletePost = document.querySelector(".delete")
+const test = ""
+
 
 
 fetch(urlPosts)
@@ -22,6 +24,8 @@ fetch(urlPosts)
     });
 
 });
+
+
 
 
 function allData(post) {
@@ -46,9 +50,16 @@ function allData(post) {
     articlePost.append(imgCard, titleCard);
 
     parentElement.appendChild(articlePost);
-
+    test = articlePost
     
 }
+
+deletePost.addEventListener("click", postDelete);
+    function postDelete() {
+        if (test.contains("data-id", post.id)){
+            test.remove()
+        }
+    }
 
 function triggerModal(element) {
     comments.textContent= "";

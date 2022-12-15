@@ -41,7 +41,6 @@ function allData(post) {
     articlePost.addEventListener("click", triggerModal);
     articlePost.append(imgCard, titleCard);
     parentElement.appendChild(articlePost);
-    
 }
 
 function triggerModal(element) {
@@ -51,6 +50,7 @@ function triggerModal(element) {
     .then(responsePostId => responsePostId.json())
     .then(data => {
         postTitle.textContent = data.title;
+        postTitle.classList = "p-2";
         postText.textContent = data.body;
         fetch("http://localhost:3000/users/" + data.userId)
         .then(responseUserId => responseUserId.json())
@@ -59,18 +59,36 @@ function triggerModal(element) {
             modalEmail.textContent = data.email;
         });
     })
+
     fetch("http://localhost:3000/comments?postId=" + dataId)
         .then(responsePost => responsePost.json())
         .then(data => {
             console.log(data)
             data.forEach( i => {
+                const commentBox = document.createElement("div");
                 const paragraph = document.createElement("p");
+                const titlePost = document.createElement("h6");
+                const commentEmail = document.createElement("p");
+                const commentIcon = document.createElement("i");
+                const emailBox = document.createElement("div");
                 paragraph.textContent = i.body;
-                paragraph.classList = "p-2 card"
-                comments.append(paragraph);
+                titlePost.textContent = i.name;
+                commentEmail.textContent = i.email;
+                emailBox.append(commentIcon, commentEmail);
+                commentBox.append(titlePost, paragraph, emailBox);
+                commentIcon.classList = "fa-regular fa-envelope d-inline m-2"
+                commentBox.classList = "card p-2 p m-3"
+                emailBox.classList = "mt-2 mb-3"
+                titlePost.classList = "m-2"
+                paragraph.classList = "p-2"
+                commentEmail.classList = "d-inline m-2 border p-1 rounded bg-secondary text-white"
+                comments.append(commentBox);
             })
             
         });
+
+    
+    
     
     
         

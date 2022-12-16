@@ -71,7 +71,6 @@ function triggerModal(element) {
         .then(data => {
             comments.textContent="";
             data.forEach( i => {
-                
                 const commentBox = document.createElement("div");
                 const paragraph = document.createElement("p");
                 const titlePost = document.createElement("h6");

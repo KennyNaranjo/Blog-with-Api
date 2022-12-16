@@ -1,6 +1,3 @@
-const urlPosts = "http://localhost:3000/posts";
-const urlUsers = "http://localhost:3000/users";
-const urlComments = "http://localhost:3000/comments";
 const parentElement = document.querySelector(".parent-box");
 const postTitle = document.querySelector(".post-title");
 const postText = document.querySelector(".post-text");
@@ -12,15 +9,14 @@ const modalComments = document.querySelector(".btn-info");
 const modalFooter = document.querySelector(".modal-footer");
 const comments = document.querySelector("#comments");
 const deletePost = document.querySelector(".delete");
+const modalClass = document.querySelector(".modal")
 
-
-fetch(urlPosts)
+fetch("http://localhost:3000/posts")
 .then(responsePost => responsePost.json())
 .then(dataPost => {
     dataPost.forEach( post => {
         allData(post);
     });
-
 });
 
 
@@ -28,16 +24,13 @@ function allData(post) {
     const articlePost = document.createElement("article");
     const titleCard = document.createElement("h6");
     const imgCard = document.createElement("img");
-    
-
-
     imgCard.setAttribute("src", "./assets/img/1.gif");
     articlePost.setAttribute("data-bs-toggle","modal");
     articlePost.setAttribute("data-bs-target", "#modal-id");
     articlePost.setAttribute("role", "button");
     imgCard.setAttribute("data-id", post.id);
     titleCard.setAttribute("data-id", post.id);
-    
+    articlePost.setAttribute("data-id", post.id);
     articlePost.classList = "col bg-dark m-2 p-2 rounded text-center article-selector ";
     titleCard.classList = "p-2  text-white  text-center ";
     imgCard.classList = "img-fluid rounded rounded-bottom " ;
@@ -45,8 +38,6 @@ function allData(post) {
     articlePost.addEventListener("click", triggerModal);
     articlePost.append(imgCard, titleCard);
     parentElement.appendChild(articlePost);
-    
-    
 }
 
 function triggerModal(element) {
@@ -69,7 +60,6 @@ function triggerModal(element) {
     fetch("http://localhost:3000/comments?postId=" + dataId)
         .then(responsePost => responsePost.json())
         .then(data => {
-            console.log(data)
             data.forEach( i => {
                 const commentBox = document.createElement("div");
                 const paragraph = document.createElement("p");
@@ -91,19 +81,31 @@ function triggerModal(element) {
                 comments.append(commentBox);
             })
             deletePost.addEventListener("click", postDelete)
+            
             function postDelete(){
-            fetch("http://localhost:3000/posts/" + dataId ,{method: "DELETE"})
-    }    
+                
+                Swal.fire({
+                    title: 'Are you sure?',
+                    color: "#fff",
+                    text: "You won't be able to revert this!",
+                    icon: 'warning',
+                    iconColor: '#dc3545',
+                    showCancelButton: true,
+                    confirmButtonColor: '#dc3545',
+                    cancelButtonColor: '#0dcaf0',
+                    confirmButtonText: 'Yes, delete it!',
+                    background: '#6c757d',
+                    })
+                    .then((result) => {
+                    if (result.isConfirmed) {
+                        fetch("http://localhost:3000/posts/" + dataId ,{method: "DELETE"})
+                    }
+                  })
+                  
+            }    
         });
-
-    
-    
-    
-    
-        
+       
 }
-
-
 
 
 

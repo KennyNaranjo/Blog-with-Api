@@ -1,0 +1,5 @@
+#ig nod
+node_modules
+
+# ig enviroment variables
+.env

@@ -5,7 +5,7 @@ export const getPostRequests = async () => await axios.get('http://localhost:400
 export const createPostRequest = async  (post) => {
     const form = new FormData();
 
-    for (let key in post){
+    for (let key in post) {
         form.append(key, post[key]);
     }
     

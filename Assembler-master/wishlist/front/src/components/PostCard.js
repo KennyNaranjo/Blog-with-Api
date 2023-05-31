@@ -32,7 +32,7 @@ export function PostCard({post}) {
     }
 
     return (
-    <div className="bg-zinc-800 text-with rounded-sm shadow-md shadow-black hover:bg-zinc-700 hover:cursor-pointer"
+    <div className="bg-zinc-800 text-white rounded-sm shadow-md shadow-black hover:bg-zinc-700 hover:cursor-pointer"
     onClick={() => navigate(`/post/${post._id}`)}
     >
         <div className="px-4 py-7">
@@ -40,15 +40,17 @@ export function PostCard({post}) {
             <h3 >
             {post.title}
             </h3>
-            <button className="bg-red-600 text-sm px-2 py-1 rounded-sm"
-            onClick={() => handleDelete(post._id)}>
+            <button className="bg-red-600 hover:bg-red-500 text-sm px-2 py-1 rounded-sm"
+            onClick={(e) => {
+                e.stopPropagation();
+                handleDelete(post._id)}}>
                 Delete
             </button>
             </div>
             <p>
             {post.description}
             </p>
-            {post.image && <img src={post.image.url}/>}
+            {post.image && <img src={post.image.url} className='w-96 h-full object-cov' />}
         </div>
         
     </div>

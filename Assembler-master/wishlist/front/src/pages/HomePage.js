@@ -17,9 +17,12 @@ export function HomePage() {
 
     return (
         <div className="text-white">
-
-            <Link to="/new">Create a new post</Link>
-            <div className="grid grid-cols-3 gap-2">
+            <header className="flex justify-between py-4">
+            <h1 className="text-2xl text-gray-300 font-bold">Post ({posts.length})</h1>
+            <Link to="/new" className="px-2 py-2 bg-indigo-500 hover:bg-indigo-600 text-white" >Create a new post</Link>
+            </header>
+            
+            <div className="grid grid-cols-3 gap-4">
             {posts.map(post => (
                 <PostCard post={post} key={post._id} />
 

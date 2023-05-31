@@ -4,6 +4,7 @@ import { usePosts } from "../context/postContext"
 import { useNavigate, useParams } from "react-router-dom"
 import { useEffect, useState } from "react"
 import{ IoArrowBackSharp} from 'react-icons/io5'
+import { AiOutlineLoading3Quarters } from 'react-icons/ai'
 
 export function PostForm() {
 
@@ -26,7 +27,12 @@ export function PostForm() {
     }, [params.id]);
 
     return (
-        <div>
+        <div className="flex items-center justify-center">
+            <div className="bg-zinc-800 p-10 shadow-md shadow-black">
+            <header className="text-xl">
+            <IoArrowBackSharp className="cursor-pointer text-white text-xl " onClick={() => navigate(-1)}/>
+            <h3 className=" text-white text-xl" >New post</h3>
+            </header>
             <Formik
                 initialValues={post}
                 validationSchema={Yup.object({
@@ -41,25 +47,36 @@ export function PostForm() {
                     } else {
                         await createPost(values);
                     }
-                    
+                    actions.setSubmitting(false);
+
                     navigate('/');
                 }}
                 enableReinitialize={true}
                 >
-                {({ handleSubmit, setFieldValue}) => (
-                    <Form className="px-3 py-2 focus:outline-none rounded bg-gray-600 text-white w-full" onSubmit={handleSubmit}>
-                        <IoArrowBackSharp className="cursor-pointer" onClick={() => navigate(-1)}/>
-                    <Field name='title' placeholder="title" className='px-3 py-2 focus:online-none rounded bg-gray-600 text-white w-full' />
+                {({ handleSubmit, setFieldValue, isSubmitting}) => (
+                    <Form onSubmit={handleSubmit} className="px-3 py-2 focus:outline-none rounded bg-gray-600 text-white w-full">
+                    
+                    <label htmlFor="title" className="text-sm block font-bold text-gray-400">Title</label>
+                    
+                    <Field name='title' placeholder="title" className='px-3 py-2 focus:online-none rounded bg-gray-600 text-white w-full mb-4' />
                     <ErrorMessage component="p" className="text-red-400 text-sm" name='title' />
 
-                    <Field name='description' placeholder="description" className='px-3 py-2 focus:online-none rounded bg-gray-600 text-white w-full'/>
+                    <label htmlFor="description" className="text-sm block font-bold text-gray-400">Description</label>
+
+                    <Field  component="textarea" name='description' placeholder="description" className='px-3 py-2 focus:online-none rounded bg-gray-600 text-white w-full' rows={3} />
                     <ErrorMessage component="p" name='description' className="text-red-400 text-sm" />
+
+                    <label htmlFor="description" className="text-sm block font-bold text-gray-400">Description</label>
+                    
                     <input type="file" name="image" className="px-3 py-2 focus:outline-one rounded bg-gray-600 text-white w-full" onChange={(e) => setFieldValue('image', e.target.files[0])}/>
-                    <button type="sumit" className="focus:outline-none text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900">Save</button>
+                    <button type="sumit" className="bg-indigo-600 hover:indigo-500 px-4 py-2 rounded mt-2 text-white focus:outline-none disabled:bg-indigo-400"
+                    disabled={isSubmitting}
+                    >{isSubmitting ? (<AiOutlineLoading3Quarters className="animate-spin h-5 w-5" />) : 'Save'}</button>
                     
                 </Form>
                 )}
             </Formik>
+            </div>
         </div>
     )
 }
